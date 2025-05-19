@@ -2,7 +2,12 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::post('register', [AuthController::class, 'createUser']);
+Route::post('login', [AuthController::class, 'loginUser']);
 
 // 1. Public read‐only
 Route::get('products',              [ProductController::class, 'index']);
