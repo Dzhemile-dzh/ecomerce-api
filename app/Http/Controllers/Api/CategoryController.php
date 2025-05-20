@@ -1,161 +1,131 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-
-/* 
+/**
  * @OA\Tag(
  *     name="Categories",
  *     description="Category management"
  * )
- * @OA\PathItem(
- *     path="/api/categories"
- * )
+ * @OA\PathItem(path="/api/categories")
  */
 class CategoryController extends Controller
 {
-     /**
+    /**
      * @OA\Get(
-     *     path="/api/categories",
-     *     summary="List categories",
-     *     tags={"Categories"},
-     *     @OA\Response(
-     *         response=200,
-     *         description="Success"
-     *     )
+     *      path="/api/categories",
+     *      summary="List categories",
+     *      tags={"Categories"},
+     *      @OA\Parameter(
+     *          name="per_page",
+     *          in="query",
+     *          description="Items per page",
+     *          @OA\Schema(type="integer", default=15)
+     *      ),
+     *      @OA\Response(response=200, description="OK")
      * )
      */
-    public function index(): JsonResponse
+    public function index(Request $request)
     {
-        return response()->json(Category::all());
+        $categories = Category::paginate($request->get('per_page', 15))->withQueryString();
+
+        return CategoryResource::collection($categories);
     }
 
-        /**
+    /**
      * @OA\Post(
-     *     path="/api/categories",
-     *     summary="Create a new category",
-     *     tags={"Categories"},
-     *     security={{"sanctum": {}}},
-     *     @OA\RequestBody(
-     *         required=true,
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Created",
-     *     ),
-     *     @OA\Response(response=401, description="Unauthorized")
+     *      path="/api/categories",
+     *      summary="Create category",
+     *      tags={"Categories"},
+     *      security={{"sanctum":{}}},
+     *      @OA\RequestBody(required=true),
+     *      @OA\Response(response=201, description="Created"),
+     *      @OA\Response(response=401, description="Unauthorized")
      * )
      */
-    public function store(StoreCategoryRequest $request): JsonResponse
+    public function store(StoreCategoryRequest $request)
     {
         $category = Category::create($request->validated());
-        return response()->json($category, 201);
+
+        return (new CategoryResource($category))
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**
      * @OA\Get(
-     *     path="/api/categories/{id}",
-     *     summary="Get category details",
-     *     tags={"Categories"},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Success",     *     ),
-     *     @OA\Response(response=404, description="Not Found")
+     *      path="/api/categories/{id}",
+     *      summary="Show category",
+     *      tags={"Categories"},
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(response=200, description="OK"),
+     *      @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function show(Category $category): JsonResponse
+    public function show(Category $category)
     {
-        return response()->json($category);
+        return new CategoryResource($category);
     }
 
     /**
      * @OA\Put(
-     *     path="/api/categories/{id}",
-     *     summary="Update a category",
-     *     tags={"Categories"},
-     *     security={{"sanctum": {}}},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Updated",
-     *     ),
-     *     @OA\Response(response=401, description="Unauthorized"),
-     *     @OA\Response(response=404, description="Not Found")
+     *      path="/api/categories/{id}",
+     *      summary="Update category",
+     *      tags={"Categories"},
+     *      security={{"sanctum":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\RequestBody(required=true),
+     *      @OA\Response(response=200, description="Updated"),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     *      @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function update(UpdateCategoryRequest $request, Category $category): JsonResponse
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
-        return response()->json($category);
+
+        return new CategoryResource($category);
     }
 
-     /**
+    /**
      * @OA\Delete(
-     *     path="/api/categories/{id}",
-     *     summary="Delete a category",
-     *     tags={"Categories"},
-     *     security={{"sanctum": {}}},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(response=204, description="No Content"),
-     *     @OA\Response(response=401, description="Unauthorized"),
-     *     @OA\Response(response=404, description="Not Found")
+     *      path="/api/categories/{id}",
+     *      summary="Delete category",
+     *      tags={"Categories"},
+     *      security={{"sanctum":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(response=204, description="No Content"),
+     *      @OA\Response(response=401, description="Unauthorized"),
+     *      @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function destroy(Category $category): JsonResponse
+    public function destroy(Category $category)
     {
         $category->delete();
-        return response()->json(null, 204);
+
+        return response()->noContent();
     }
 }
-
-/**
- * @OA\Schema(
- *     schema="Category",
- *     type="object",
- *     required={"id","name"},
- *     @OA\Property(property="id", type="integer"),
- *     @OA\Property(property="name", type="string"),
- *     @OA\Property(property="description", type="string", nullable=true),
- *     @OA\Property(property="created_at", type="string", format="date-time"),
- *     @OA\Property(property="updated_at", type="string", format="date-time")
- * )
- *
- * @OA\Schema(
- *     schema="StoreCategoryRequest",
- *     type="object",
- *     required={"name"},
- *     @OA\Property(property="name", type="string"),
- *     @OA\Property(property="description", type="string")
- * )
- *
- * @OA\Schema(
- *     schema="UpdateCategoryRequest",
- *     type="object",
- *     @OA\Property(property="name", type="string"),
- *     @OA\Property(property="description", type="string")
- * )
- */
