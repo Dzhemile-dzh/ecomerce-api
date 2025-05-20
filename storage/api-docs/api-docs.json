@@ -9,6 +9,54 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "List categories",
+                "operationId": "ac9c4d978ea4e5b72915ca9728e5b8b1",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Items per page",
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Create category",
+                "operationId": "cca49a87d9b0ebb9a98ad7c154b71737",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/products": {
             "get": {
                 "tags": [
@@ -37,7 +85,7 @@
                     {
                         "name": "min_price",
                         "in": "query",
-                        "description": "Minimum price filter",
+                        "description": "Minimum price",
                         "schema": {
                             "type": "number",
                             "format": "float"
@@ -46,7 +94,7 @@
                     {
                         "name": "max_price",
                         "in": "query",
-                        "description": "Maximum price filter",
+                        "description": "Maximum price",
                         "schema": {
                             "type": "number",
                             "format": "float"
@@ -55,7 +103,7 @@
                     {
                         "name": "sort_by",
                         "in": "query",
-                        "description": "Sort field",
+                        "description": "Column to sort by",
                         "schema": {
                             "type": "string"
                         }
@@ -72,7 +120,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     }
                 }
             },
@@ -80,45 +128,8 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Create a new product",
+                "summary": "Create a product",
                 "operationId": "785644b7d7dd38af4b51dafd0fbc1b6d",
-                "requestBody": {
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
-        },
-        "/api/categories": {
-            "get": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "List categories",
-                "operationId": "ac9c4d978ea4e5b72915ca9728e5b8b1",
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Create a new category",
-                "operationId": "cca49a87d9b0ebb9a98ad7c154b71737",
                 "requestBody": {
                     "required": true
                 },
@@ -142,7 +153,7 @@
                 "tags": [
                     "Categories"
                 ],
-                "summary": "Get category details",
+                "summary": "Show category",
                 "operationId": "09767bb2e47dde77dd1e2591428b0ae1",
                 "parameters": [
                     {
@@ -156,7 +167,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     },
                     "404": {
                         "description": "Not Found"
@@ -167,7 +178,7 @@
                 "tags": [
                     "Categories"
                 ],
-                "summary": "Update a category",
+                "summary": "Update category",
                 "operationId": "7dcf71887e585de7f881e9eb98d86126",
                 "parameters": [
                     {
@@ -203,7 +214,7 @@
                 "tags": [
                     "Categories"
                 ],
-                "summary": "Delete a category",
+                "summary": "Delete category",
                 "operationId": "9b61b65823f4a21f182506b34ddf805c",
                 "parameters": [
                     {
@@ -238,7 +249,7 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Get product details",
+                "summary": "Show product",
                 "operationId": "c87fb2e4d617e7b36c712cad358acdb8",
                 "parameters": [
                     {
@@ -252,7 +263,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     },
                     "404": {
                         "description": "Not Found"
@@ -263,7 +274,7 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Update a product",
+                "summary": "Update product",
                 "operationId": "416e4959a3919547eb609d87e3db9135",
                 "parameters": [
                     {
@@ -299,7 +310,7 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Delete a product",
+                "summary": "Delete product",
                 "operationId": "b49ce9f3cb168b233245548fb4ef36d3",
                 "parameters": [
                     {
@@ -332,12 +343,12 @@
     },
     "tags": [
         {
-            "name": "Products",
-            "description": "Product management"
+            "name": "Categories",
+            "description": "Category management"
         },
         {
-            "name": "Categories",
-            "description": "Categories"
+            "name": "Products",
+            "description": "Product management"
         }
     ]
 }
