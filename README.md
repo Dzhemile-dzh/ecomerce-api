@@ -23,7 +23,9 @@ A lightweight product & category catalog built with **Laravel 12**, secured by *
 
 # 1. Clone & install
 git clone https://github.com/Dzhemile-dzh/ecomerce-api.git
+
 cd ecommerce-api
+
 composer install
 
 # 2. Environment
