@@ -174,6 +174,9 @@ SANCTUM_STATEFUL_DOMAINS=localhost:3000
 ![products-add](https://github.com/user-attachments/assets/eff0d34b-7ebf-4fa4-b936-8ee8c21edf54)
 ![products-update](https://github.com/user-attachments/assets/1fbb1f1a-683f-45e2-8437-01364c8b8d21)
 
+#Filters
+![image](https://github.com/user-attachments/assets/8c3f3e16-0f1f-4f6c-96c8-b38b20385f45)
+
 
 # Swagger
 ![swagger](https://github.com/user-attachments/assets/ff2cfe9c-c971-4e4d-ba07-6c15ee836a47)
