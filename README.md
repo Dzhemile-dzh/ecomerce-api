@@ -21,7 +21,6 @@ A lightweight product & category catalog built with **Laravel 10**, secured by *
 
 ## 🚀 Quick start
 
-$$
 # 1. Clone & install
 git clone https://github.com/Dzhemile-dzh/ecomerce-api.git
 cd ecommerce-api
@@ -29,7 +28,7 @@ composer install
 
 # 2. Environment
 cp .env.example .env
-# → tweak the DB_ keys to match your local MySQL (port 3307 by default)
+→ tweak the DB_ keys to match your local MySQL (port 3307 by default)
 
 php artisan key:generate
 
