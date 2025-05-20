@@ -1,6 +1,6 @@
 # E‑Commerce REST API (Laravel 10)
 
-A lightweight product & category catalog built with **Laravel 10**, secured by **Laravel Sanctum**, documented with **Swagger / OpenAPI 3** and backed by **MySQL**.
+A lightweight product & category catalog built with **Laravel 12**, secured by **Laravel Sanctum**, documented with **Swagger / OpenAPI 3** and DB by **MySQL**.
 
 ---
 
@@ -28,17 +28,13 @@ composer install
 
 # 2. Environment
 cp .env.example .env
-→ tweak the DB_ keys to match your local MySQL (port 3307 by default)
-
 php artisan key:generate
 
 # 3. Database
-php artisan migrate --seed   # runs migrations + DatabaseSeeder
+php artisan migrate --seed
 
 # 4. Serve
 php artisan serve            # http://localhost:8000
-```
-
 
 ---
 
@@ -93,8 +89,6 @@ Sanctum stores tokens in `personal_access_tokens`; revoke with `$user->tokens()-
 ```bash
 php artisan test
 ```
-
-Feature tests live in `tests/Feature` and reset the database with `RefreshDatabase`.
 
 ---
 
@@ -154,5 +148,25 @@ DB_PASSWORD=secret
 
 SANCTUM_STATEFUL_DOMAINS=localhost:3000
 ```
+
+## Demo
+![register](https://github.com/user-attachments/assets/9ceb4e0e-761b-491a-a167-33055c72135d)
+
+![login](https://github.com/user-attachments/assets/4fd531f7-9764-4f10-8493-f4409d9ae518)
+
+![categories-getId](https://github.com/user-attachments/assets/e1b50bbc-f555-42c0-b77e-1784fd4f3d98)
+![categories-get](https://github.com/user-attachments/assets/356c65c7-f78f-45f0-abc8-846de166cdfc)
+![categories-add](https://github.com/user-attachments/assets/8c7ff3a7-1ddd-4270-80e6-b6580c18edad)
+![categories-delete](https://github.com/user-attachments/assets/785bf6ab-e899-4926-8060-03cb3b75b15c)
+
+![products-getId](https://github.com/user-attachments/assets/9dadaf81-2bd4-4afe-a4d5-988e8e89a42b)
+![products-get](https://github.com/user-attachments/assets/e941c521-da69-43c9-8302-2da4b00ac9f0)
+![products-add](https://github.com/user-attachments/assets/eff0d34b-7ebf-4fa4-b936-8ee8c21edf54)
+
+
+![swagger](https://github.com/user-attachments/assets/ff2cfe9c-c971-4e4d-ba07-6c15ee836a47)
+
+
+
 
 ---
