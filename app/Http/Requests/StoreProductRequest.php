@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreProductRequest extends FormRequest
 {
@@ -22,11 +24,38 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'required|string|max:255',
-            'price'       => 'required|numeric|min:0',
-            'description' => 'nullable|string',
-            'category_id' => 'numeric',
-            'stock_quantity' => 'numeric'
+            'name'           => 'required|string|max:255',
+            'price'          => 'required|numeric|min:0',
+            'description'    => 'nullable|string',
+            'category_id'    => 'required|integer|exists:categories,id',
+            'stock_quantity' => 'required|integer|min:0',
         ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required'           => 'Please provide a product name.',
+            'name.max'                => 'Product name may not exceed 255 characters.',
+            'price.required'          => 'A price is required.',
+            'price.numeric'           => 'The price must be a valid number.',
+            'price.min'               => 'Price cannot be negative.',
+            'category_id.required'    => 'Please select a category.',
+            'category_id.exists'      => 'The selected category does not exist.',
+            'stock_quantity.required' => 'Please specify how many items are in stock.',
+            'stock_quantity.integer'  => 'Stock quantity must be a whole number.',
+            'stock_quantity.min'      => 'Stock quantity cannot be negative.',
+        ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $errors = $validator->errors()->messages();
+
+        throw new HttpResponseException(response()->json([
+            'status'  => 'error',
+            'message' => 'Validation failed',
+            'errors'  => $errors,
+        ], 422));
     }
 }
