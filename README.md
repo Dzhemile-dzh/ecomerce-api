@@ -37,7 +37,7 @@ php artisan key:generate
 php artisan migrate --seed
 
 # 4. Serve
-php artisan serve            # http://localhost:8000
+php artisan serve
 
 ---
 
