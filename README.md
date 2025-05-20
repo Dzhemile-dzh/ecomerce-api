@@ -144,7 +144,7 @@ SANCTUM_STATEFUL_DOMAINS=localhost:3000
 
 ## ✨ Demo
 # Register
-![register](https://github.com/user-attachments/assets/9ceb4e0e-761b-491a-a167-33055c72135d)
+![image](https://github.com/user-attachments/assets/e6531845-c67e-48c1-aae2-1738a99394ed)
 
 # Login
 ![login](https://github.com/user-attachments/assets/4fd531f7-9764-4f10-8493-f4409d9ae518)
