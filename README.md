@@ -165,11 +165,14 @@ SANCTUM_STATEFUL_DOMAINS=localhost:3000
 ![categories-get](https://github.com/user-attachments/assets/356c65c7-f78f-45f0-abc8-846de166cdfc)
 ![categories-add](https://github.com/user-attachments/assets/8c7ff3a7-1ddd-4270-80e6-b6580c18edad)
 ![categories-delete](https://github.com/user-attachments/assets/785bf6ab-e899-4926-8060-03cb3b75b15c)
+![categories-update](https://github.com/user-attachments/assets/dbadaf6b-5bd9-4411-92de-b67d56a67abc)
+
 
 # Products
 ![products-getId](https://github.com/user-attachments/assets/9dadaf81-2bd4-4afe-a4d5-988e8e89a42b)
 ![products-get](https://github.com/user-attachments/assets/e941c521-da69-43c9-8302-2da4b00ac9f0)
 ![products-add](https://github.com/user-attachments/assets/eff0d34b-7ebf-4fa4-b936-8ee8c21edf54)
+![products-update](https://github.com/user-attachments/assets/1fbb1f1a-683f-45e2-8437-01364c8b8d21)
 
 
 # Swagger
