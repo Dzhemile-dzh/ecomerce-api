@@ -37,7 +37,7 @@ php artisan key:generate
 php artisan migrate --seed
 
 # 4. Serve
-php artisan serve            # http://localhost:8000
+php artisan serve
 
 ---
 
@@ -106,17 +106,6 @@ Open <http://localhost:8000/api/documentation> in your browser.
 
 ---
 
-## 🔒 Security
-
-| Measure | Notes |
-|---------|-------|
-| **Rate limiting** | `60 req/min` per user/IP via `RouteServiceProvider`. |
-| **Auth tokens** | Stored hashed; revoke via Sanctum API. |
-| **Validation** | All input passes through dedicated `FormRequest` classes. |
-| **Headers** | Uses Laravel defaults: CSRF disabled for `api` middleware group (tokens instead). |
-
----
-
 ## 🏗️ Project structure
 
 ```
@@ -173,6 +162,9 @@ SANCTUM_STATEFUL_DOMAINS=localhost:3000
 ![products-get](https://github.com/user-attachments/assets/e941c521-da69-43c9-8302-2da4b00ac9f0)
 ![products-add](https://github.com/user-attachments/assets/eff0d34b-7ebf-4fa4-b936-8ee8c21edf54)
 ![products-update](https://github.com/user-attachments/assets/1fbb1f1a-683f-45e2-8437-01364c8b8d21)
+
+# Filters
+![image](https://github.com/user-attachments/assets/8c3f3e16-0f1f-4f6c-96c8-b38b20385f45)
 
 
 # Swagger
