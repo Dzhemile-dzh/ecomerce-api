@@ -27,7 +27,6 @@ class StoreProductRequest extends FormRequest
             'description' => 'nullable|string',
             'category_id' => 'numeric',
             'stock_quantity' => 'numeric'
-
         ];
     }
 }
