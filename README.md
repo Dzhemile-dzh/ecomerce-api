@@ -44,7 +44,7 @@ php artisan serve
 ## 🔑 Authentication flow
 
 1. **Register**  
-   `POST /api/register` → `{ name, email, password }`  
+   `POST /api/register` → `{ name, email, password, role }`  
    ↳ returns `token` (Bearer)
 
 2. **Login**  
