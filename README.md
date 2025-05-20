@@ -30,6 +30,7 @@ composer install
 
 # 2. Environment
 cp .env.example .env
+
 php artisan key:generate
 
 # 3. Database
