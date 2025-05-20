@@ -1,4 +1,4 @@
-# E‑Commerce REST API (Laravel 10)
+# E‑Commerce REST API
 
 A lightweight product & category catalog built with **Laravel 12**, secured by **Laravel Sanctum**, documented with **Swagger / OpenAPI 3** and DB by **MySQL**.
 
