@@ -1,6 +1,6 @@
 # E‑Commerce REST API
 
-A lightweight product & category catalog built with **Laravel 12**, secured by **Laravel Sanctum**, documented with **Swagger / OpenAPI 3** and DB by **MySQL**.
+A lightweight product & category catalog built with **Laravel 12**, secured by **Laravel Sanctum**, documented with **Swagger / OpenAPI 3** and  **MySQL** as a DB.
 
 ---
 
@@ -61,6 +61,7 @@ Sanctum stores tokens in `personal_access_tokens`; revoke with `$user->tokens()-
 
 | Method | Endpoint | Description | Query params |
 |--------|----------|-------------|--------------|
+| **\*Public\*** |  |  |  |
 | GET | `/api/products` | List products (paginated) | `per_page`, `category_id`, `min_price`, `max_price`, `sort_by`, `sort_dir` |
 | GET | `/api/products/{id}` | Product details | — |
 | GET | `/api/categories` | List categories (paginated) | `per_page` |
