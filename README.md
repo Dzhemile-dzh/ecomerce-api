@@ -106,17 +106,6 @@ Open <http://localhost:8000/api/documentation> in your browser.
 
 ---
 
-## 🔒 Security
-
-| Measure | Notes |
-|---------|-------|
-| **Rate limiting** | `60 req/min` per user/IP via `RouteServiceProvider`. |
-| **Auth tokens** | Stored hashed; revoke via Sanctum API. |
-| **Validation** | All input passes through dedicated `FormRequest` classes. |
-| **Headers** | Uses Laravel defaults: CSRF disabled for `api` middleware group (tokens instead). |
-
----
-
 ## 🏗️ Project structure
 
 ```
